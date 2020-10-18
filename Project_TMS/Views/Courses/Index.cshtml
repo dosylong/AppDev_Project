@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Project_TMS.Models.Course>
+@{
+	ViewBag.Title = "Index";
+}
+
+<h2>Course</h2>
+
+@using (Html.BeginForm("Index", "Courses", FormMethod.Get))
+{
+	<p>
+		<input type="search" placeholder="Enter Course Name or Category Name"
+			   name="searchCourse" style="width:255px; height:33px;" />
+
+		<input type="submit" value="Search" class="btn btn-primary" />
+
+		@Html.ActionLink("View all Courses", "Index", "Courses")
+	</p>
+}
+
+@Html.ActionLink("Create a new Course", "Create")
+
+<table class="table table-striped">
+	<tr>
+		<th>Course Id</th>
+		<th>Course Name</th>
+		<th>Course Descriptions</th>
+		<th>Category Name</th>
+		<th>Edit</th>
+		<th>Delete</th>
+	</tr>
+
+	@foreach (var course in Model)
+	{
+		<tr>
+			<td>@course.Id</td>
+			<td>@course.Name</td>
+			<td>@course.Descriptions</td>
+			<td>@course.Category.Name</td>
+			<td>@Html.ActionLink("Edit this category", "Edit", new { id = course.Id })</td>
+			<td>@Html.ActionLink("Delete this category", "Delete", new { id = course.Id })</td>
+		</tr>
+	}
+</table>

@@ -1,0 +1,32 @@
+﻿@model Project_TMS.ViewModels.CourseCategoryViewModel
+@{
+	ViewBag.Title = "Create";
+}
+
+<h2>Create a new Course</h2>
+@Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+@using (Html.BeginForm("Create", "Courses", FormMethod.Post))
+{
+
+	<div class="form-group">
+		@Html.LabelFor(co => co.Course.Name)
+		@Html.TextBoxFor(co => co.Course.Name, new { @class = "form-control" })
+		@Html.ValidationMessageFor(co => co.Course.Name)
+	</div>
+
+	<div class="form-group">
+		@Html.LabelFor(co => co.Course.Descriptions)
+		@Html.TextBoxFor(co => co.Course.Descriptions, new { @class = "form-control" })
+		@Html.ValidationMessageFor(co => co.Course.Descriptions)
+	</div>
+
+	<div class="form-group">
+		@Html.LabelFor(t => t.Course.Category.Name)
+		@Html.DropDownListFor(t => t.Course.CategoryId,
+		 new SelectList(Model.Categories, "Id", "Name"),
+		 "Select Category Name",
+		 new { @class = "form-control" })
+	</div>
+	<button type="submit" class="btn btn-primary">Create</button>
+}

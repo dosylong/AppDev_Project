@@ -1,0 +1,25 @@
+﻿@model Project_TMS.Models.Category
+@{
+	ViewBag.Title = "Edit";
+}
+
+<h2>Edit Category</h2>
+
+@Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+@using (Html.BeginForm("Edit", "Categories", FormMethod.Post))
+{
+	@Html.HiddenFor(c => c.Id)
+	<div class="form-group">
+		@Html.LabelFor(c => c.Name)
+		@Html.EditorFor(c => c.Name, new { htmlAttributes = new { @class = "form-control" } })
+		@Html.ValidationMessageFor(c => c.Name, "", new { @class = "text-danger" })
+	</div>
+
+	<div class="form-group">
+		@Html.LabelFor(c => c.Descriptions)
+		@Html.EditorFor(c => c.Descriptions, new { htmlAttributes = new { @class = "form-control" } })
+		@Html.ValidationMessageFor(c => c.Descriptions, "", new { @class = "text-danger" })
+	</div>
+	<button type="submit" class="btn btn-primary">Edit</button>
+}
